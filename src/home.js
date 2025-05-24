@@ -1,7 +1,7 @@
 //Логіка сторінки Home
 
-import { getCategory } from './js/products-api';
-import { crieitElements } from './js/render-function';
+import { getCategory, getProducts } from './js/products-api';
+import { crieitElements, renderProducts } from './js/render-function';
 
 const categoryList = document.querySelector('.categories');
 
@@ -12,3 +12,11 @@ async function crieiteCategoris() {
   );
 }
 crieiteCategoris();
+
+const initialProducts = async () => {
+  let currentPage = 1;
+  const response = await getProducts(currentPage);
+  renderProducts(response.products);
+};
+
+initialProducts();
